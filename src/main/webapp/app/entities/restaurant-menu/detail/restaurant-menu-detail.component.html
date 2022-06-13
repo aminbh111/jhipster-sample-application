@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <div *ngIf="restaurantMenu">
+            <h2 data-cy="restaurantMenuDetailsHeading"><span>Restaurant Menu</span></h2>
+
+            <hr />
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <jhi-alert></jhi-alert>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>ID</span></dt>
+                <dd>
+                    <span>{{ restaurantMenu.id }}</span>
+                </dd>
+                <dt><span>Date</span></dt>
+                <dd>
+                    <span>{{ restaurantMenu.date | formatMediumDatetime }}</span>
+                </dd>
+                <dt><span>Publish</span></dt>
+                <dd>
+                    <span>{{ restaurantMenu.publish }}</span>
+                </dd>
+                <dt><span>Content Position</span></dt>
+                <dd>
+                    <span>{{ restaurantMenu.contentPosition }}</span>
+                </dd>
+                <dt><span>Image Position</span></dt>
+                <dd>
+                    <span>{{ restaurantMenu.imagePosition }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button" [routerLink]="['/restaurant-menu', restaurantMenu.id, 'edit']" class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

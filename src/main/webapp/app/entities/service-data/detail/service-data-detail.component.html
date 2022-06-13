@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <div *ngIf="serviceData">
+            <h2 data-cy="serviceDataDetailsHeading"><span>Service Data</span></h2>
+
+            <hr />
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <jhi-alert></jhi-alert>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>ID</span></dt>
+                <dd>
+                    <span>{{ serviceData.id }}</span>
+                </dd>
+                <dt><span>Lang</span></dt>
+                <dd>
+                    <span>{{ serviceData.lang }}</span>
+                </dd>
+                <dt><span>Title</span></dt>
+                <dd>
+                    <span>{{ serviceData.title }}</span>
+                </dd>
+                <dt><span>Content</span></dt>
+                <dd>
+                    <span>{{ serviceData.content }}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="serviceData.image">
+                        <a (click)="openFile(serviceData.image, serviceData.imageContentType)">
+                            <img
+                                [src]="'data:' + serviceData.imageContentType + ';base64,' + serviceData.image"
+                                style="max-width: 100%"
+                                alt="serviceData image"
+                            />
+                        </a>
+                        {{ serviceData.imageContentType }}, {{ byteSize(serviceData.image) }}
+                    </div>
+                </dd>
+                <dt><span>Service</span></dt>
+                <dd>
+                    <div *ngIf="serviceData.service">
+                        <a [routerLink]="['/service', serviceData.service?.id, 'view']">{{ serviceData.service?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button" [routerLink]="['/service-data', serviceData.id, 'edit']" class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
